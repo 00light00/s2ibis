@@ -50,9 +50,9 @@ public:
   ibisTypMinMax vih;
   ibisTypMinMax tr;
   ibisTypMinMax tf;
-  ibisVItable pulldown = new ibisVItable();
-  ibisVItable pullup = new ibisVItable();
-  ibisVItable gnd_clamp = new ibisVItable();
+  ibisVItable pulldown;
+  ibisVItable pullup;
+  ibisVItable gnd_clamp;
   ibisVItable power_clamp = new ibisVItable();
   waveTableList risingWaveList = new waveTableList();
   waveTableList fallingWaveList = new waveTableList();

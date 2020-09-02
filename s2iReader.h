@@ -1,72 +1,27 @@
-/*    */ import java.io.IOException;
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ class s2iReader
-/*    */ {
-/*    */   static String inFile;
-/* 55 */   static ibisTOP ibisStruct = new ibisTOP();
-/* 56 */   static ibisGlobal ibisGlobal = new ibisGlobal();
-/*    */ 
-/*    */   
-/*    */   public static void main(String[] args) throws IOException {
-/* 60 */     s2iParser parser = new s2iParser();
-/* 61 */     parser.Sp2iParse(inFile);
-/* 62 */     parser.ibis.cList = parser.cList;
-/* 63 */     ibisStruct = parser.ibis;
-/* 64 */     ibisGlobal = parser.global;
-/*    */   }
-/*    */ }
+#ifndef _S2IREADER
+#define _S2IREADER
+
+#include <string>
 
 
-/* Location:              D:\IBIS\s2ibis3_v1_1\java\!\s2iReader.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */
+
+
+class s2iReader
+{
+public:
+  string inFile;
+  ibisTOP ibisStruct;
+  ibisGlobal ibisGlobal;
+
+};
+#endif
+
+#include "s2iParser.h"
+int main(int argv, char* args[]) {
+    s2iParser parser = new s2iParser();
+    parser.Sp2iParse(inFile);
+    parser.ibis.cList = parser.cList;
+    ibisStruct = parser.ibis;
+    ibisGlobal = parser.global;
+    return 0;
+}

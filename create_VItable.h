@@ -1,11 +1,9 @@
-import java.util.LinkedHashMap;
+#ifndef _CREATE_VITABLE
+#define _CREATE_VITABLE
 
 class create_VItable {
+public:
   LinkedHashMap LHM;
 }
 
-
-/* Location:              D:\IBIS\s2ibis3_v1_1\java\!\create_VItable.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */
+#endif

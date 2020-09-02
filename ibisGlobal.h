@@ -5,37 +5,38 @@
 #define String std::string
 
 #include "ibisTypMinMax.h"
+#include "ibisPackage.h"
 
 class ibisGlobal
 {
 public:
   String commentChar;
-  ibisTypMinMax tempRange = new ibisTypMinMax();
-  ibisTypMinMax voltageRange = new ibisTypMinMax();
-  ibisTypMinMax pullupRef = new ibisTypMinMax();
-  ibisTypMinMax pulldownRef = new ibisTypMinMax();
-  ibisTypMinMax powerClampRef = new ibisTypMinMax();
-  ibisTypMinMax gndClampRef = new ibisTypMinMax();
-  ibisTypMinMax c_comp = new ibisTypMinMax();
-  ibisTypMinMax vil = new ibisTypMinMax();
-  ibisTypMinMax vih = new ibisTypMinMax();
-  ibisTypMinMax tr = new ibisTypMinMax();
-  ibisTypMinMax tf = new ibisTypMinMax();
+  ibisTypMinMax tempRange;
+  ibisTypMinMax voltageRange;
+  ibisTypMinMax pullupRef;
+  ibisTypMinMax pulldownRef;
+  ibisTypMinMax powerClampRef;
+  ibisTypMinMax gndClampRef;
+  ibisTypMinMax c_comp;
+  ibisTypMinMax vil;
+  ibisTypMinMax vih;
+  ibisTypMinMax tr;
+  ibisTypMinMax tf;
   double Rload;
   double derateVIPct;
   double derateRampPct;
   double clampTol;
   double simTime;
-  ibisPackage pinParasitics = new ibisPackage();
+  ibisPackage pinParasitics;
 
 
   ibisGlobal() {
-    this.commentChar = null;
-    this.Rload = -1.33287736222333E20D;
-    this.derateVIPct = 0.0D;
-    this.derateRampPct = 0.0D;
-    this.clampTol = 0.0D;
-    this.simTime = -1.33287736222333E20D;
+    this->commentChar = "";
+    this->Rload = -1.33287736222333E20;
+    this->derateVIPct = 0.0;
+    this->derateRampPct = 0.0;
+    this->clampTol = 0.0;
+    this->simTime = -1.33287736222333E20;
   }
 }
 
