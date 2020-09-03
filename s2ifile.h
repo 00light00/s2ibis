@@ -69,11 +69,12 @@ struct ibisGlobal {
 
 class s2ifile {
 public:
+  vector<vector<string>> keyAndData;
+  unordered_map<string, int> keyNameToInt;
   string inFile;
   ibisTOP ibisStruct;
   ibisGlobal ibisGlobal;
   ibisTypMinMax typMinMax;
-  unordered_map<string, vector<string>> keyTree;
   // Linked List declarations
   //  pinMapList pmList;
   //  ibisPinMap tempPinMap;
@@ -116,11 +117,6 @@ public:
   s2ifile(string &infile);
   void s2iParse();
   void getKey(string &line, string &key);
-};
-
-struct s2iParser {
-  ibisTOP ibis;
-  ibisGlobal global;
 };
 
 #endif // S2IFILE_H

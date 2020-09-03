@@ -1,6 +1,11 @@
 #include "s2ifile.h"
 
-s2ifile::s2ifile(string &infile) : inFile(infile) {}
+s2ifile::s2ifile(string &infile) : inFile(infile) {
+  for (int i = 0; i < KeyNames->size(); ++i) {
+    keyNameToInt[KeyNames[i]] = i + 1;
+  }
+  keyAndData.resize(KeyNames->size() + 1);
+}
 
 void s2ifile::s2iParse() {
   fstream fs(inFile);
@@ -26,7 +31,7 @@ void s2ifile::s2iParse() {
         getKey(line, key);
       default:
         //        cout << line << endl;
-        keyTree[key].push_back(line);
+        keyAndData[keyNameToInt[key]].push_back(line);
         break;
       }
     }
@@ -44,7 +49,7 @@ void s2ifile::getKey(string &line, string &key) {
     *it = tolower(*it);
   }
   key = token;
-  keyTree[token] = vector<string>();
+  keyAndData[keyNameToInt[token]] = vector<string>();
   line = line.substr(idx + 1);
   cout << token << endl;
 }
