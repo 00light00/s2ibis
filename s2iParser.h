@@ -57,7 +57,7 @@ Initial revision
 #include <time.h>
 using namespace std;
 
-#include "s2iHeader.h"
+#include "s2iHeader.cpp"
 
 class s2iReader {
   string inFile;

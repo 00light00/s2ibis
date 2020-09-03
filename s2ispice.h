@@ -81,7 +81,7 @@ Initial revision
 
 #include <string>
 using namespace std;
-#include "s2iHeader.h"
+#include "s2iHeader.cpp"
 
 /******************************************************************************
 CLASS: setupPwrAndTempCmds

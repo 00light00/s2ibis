@@ -64,7 +64,7 @@ Initial revision
 // import java.awt.List;
 // import java.math.*;
 
-#include "s2iHeader.h"
+#include "s2iHeader.cpp"
 /******************************************************************************
 CLASS: getMatchingPin
 ******************************************************************************/

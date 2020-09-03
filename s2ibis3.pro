@@ -3,16 +3,13 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES +=
+SOURCES += \
+    constantstuff.cpp \
+    s2ibis3.cpp \
+    s2ifile.cpp
 
 HEADERS += \
-s2ianalyz.h \
-s2iHeader.h \
-s2iParser.h \
-    s2ibis3.cpp \
-s2ispice.h \
-s2iutil.h \
-
-
-
+    constantstuff.h \
+    ibistypminmax.h \
+    s2ifile.h
 

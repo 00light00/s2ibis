@@ -1,12 +1,19 @@
-#ifndef _IBISTYPMINMAX
-#define _IBISTYPMINMAX
+#ifndef IBISTYPMINMAX_H
+#define IBISTYPMINMAX_H
 
-class ibisTypMinMax
-{
-public:
-  double typ = -1.33287736222333E20;
-  double min = -1.33287736222333E20;
-  double max = -1.33287736222333E20;
+#include "constantstuff.h"
+
+/******************************************************************************
+CLASS: ibisTypMinMax
+******************************************************************************/
+struct ibisTypMinMax {
+  double typ, min, max;
+  // constructor for ibisTypMinMax class
+  ibisTypMinMax() {
+    typ = ConstantStuff::USE_NA;
+    min = ConstantStuff::USE_NA;
+    max = ConstantStuff::USE_NA;
+  } // constructor for ibisTypMnMax class
 };
 
-#endif;
+#endif // IBISTYPMINMAX_H

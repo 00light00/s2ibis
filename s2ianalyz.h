@@ -1,5 +1,5 @@
 
-#include "s2iHeader.h"
+#include "s2iHeader.cpp"
 
 /*	CLASS:		setupVoltages
  *
