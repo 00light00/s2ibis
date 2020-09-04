@@ -1,0 +1,177 @@
+| Specify the IBIS version and file revision number.
+|
+[IBIS Ver]		3.2
+
+[File name]     tx.ibs
+
+[File rev] 		1.0
+
+[date]  April 1, 2004
+[source] From MegaFLOPS Inc. layout and silicon models.
+[notes] This is not an actual device. No one would buy it anyway.
+[disclaimer] This file is only for demonstration purposes. It describes
+a really crummy chip containing a couple of tri-state drivers and an
+output-only driver, along with clamp diodes running off of a different
+power supply.
+
+You can put blank lines in any of these sections. (But s2ibis3 won't
+print them.)
+
+Of course, as noted in the documentation, any text in these sections is
+truncated at 1KB.
+
+[Copyright] Copyright 2004 MegaFLOPS Inc.
+
+|
+|[Spice type]		spectre
+[Spice type]		hspice
+
+|[spice command] hspice2017.03-2 +grid
+|
+| Specify the SPICE file where the circuit is located.
+|
+[Spice file] 	multipow.sp
+
+| Use the [Iterate] switch so we don't re-run SPICE every time we run
+| s2ibis2.
+|
+|[Iterate]
+|[cleanup]
+[summarize]
+
+|
+| Add some comments to identify the file.
+|
+
+|
+| Give the spice type.  Allowable values are hspice, pspice, spice2,
+| spice3 spectre and eldo.
+|
+|
+| Now specify some global parameters. These parameters will apply to
+| _all_ the models in this file.
+|
+| Note on the [Temperature range] keyword: Since this is a CMOS circuit,
+| the min column contains the highest temperature, since this temperature
+| causes or amplifies the "min" (slow, weak) behavior, while the max
+| column contains the lowest temperature, since this temperature causes or
+| amplifies the "max" (fast, strong) behavior.  If this were a bipolar
+| circuit, these temperature values would be reversed.
+|
+| Since we have the clamp diodes running off of a different voltage, we
+| need to use the [pullup reference] etc. keywords to set up the
+| different supplies. We also need to use the [pin map] keyword to
+| specify which structures connect to various power/ground buses.
+|
+[temperature range] 25 110 0
+[voltage range] 0.9 0.81 0.99
+
+[pullup reference] 3.3 3 3.6
+[pulldown reference] 0 0 0
+[power clamp reference] 5 4.5 5.5
+[gnd clamp reference] 0 0 0
+|[vil] 0 0 0
+|[vih] 3.3 3 3.6
+[rload] 50
+[Tr]    10ps    10ps    10ps
+[Tf]    10ps    10ps    10ps
+|[clamp tolerance] -1
+|[Derate VI]
+|[Derate ramp]
+
+[sim time] 3ns
+
+| 
+| Specify the default pin parasitics
+| 
+[R_pkg]			2.0m	1.0m	4.0m
+[L_pkg]			0.2nH	0.1nH	0.4nH
+[C_pkg]			2pF     1pF     4pF
+[C_comp]        0.4pF   0.4pF   0.4pF
+|
+| Component Description
+|
+[Component] MCM Driver Chip
+[manufacturer] MegaFLOPS Inc.
+
+|[Diff pin]
+|outn   outp
+|
+| Now specify the pin mapping. In this case, all of the clamp structures
+| will connect to the buses CLMP_VDD and CLMP_GND, while the drivers
+| will connect to DRV_VDD and DRV_GND. CLMP_VDD is supplied by pin 7,
+| CLMP_GND is supplied by pin 6, DRV_VDD is supplied by pin 12, and
+| DRV_GND is supplied by pin 1.
+| 
+| Note that all of the power and ground pins, regardless of whether or not
+| they supply clamp structures or drivers, have their bus entries in the
+| pulldown and pullup columns (e.g. pins 1, 6, 7 and 12).
+|
+[pin mapping]
+1   DRV_GND	NC
+2   NC  	NC	    CLMP_GND	CLMP_VDD
+3   NC  	NC	    CLMP_GND	CLMP_VDD
+4   NC  	NC	    CLMP_GND	CLMP_VDD
+5   NC  	NC	    CLMP_GND	CLMP_VDD
+6   CLMP_GND	NC
+7   NC  	CLMP_VDD
+8   NC  	NC	    NC  	NC
+9   DRV_GND	DRV_VDD     CLMP_GND	CLMP_VDD
+10  DRV_GND	DRV_VDD     CLMP_GND	CLMP_VDD
+11  DRV_GND	DRV_VDD     CLMP_GND	CLMP_VDD
+12  NC  	DRV_VDD
+
+|
+| Now specify the pin list. 
+|
+| Unlike examples 1 and 2, in this example we'll create a full pin list,
+| one that "looks like" a pin list for a commercial part.
+|
+[Pin]
+1   gnd         gnd         GND
+2   tri_in      in1         input
+3   tri_in      in2         input
+4   in          in3         input
+5   enable      enable      input
+6   clmp_gnd    clmp_gnd    GND
+7   clmp_vdd    clmp_vdd    POWER
+8   nc          nc          NC
+9   out1         out3        driver
+-> 4
+10  tri_out1     out2        tristate_driver
+-> 3 5
+11  tri_out1     out1        tristate_driver
+-> 2 5
+12  vdd         vdd         POWER
+
+|
+| Now we give the particulars of the models.
+|
+[Model] input
+[model type] input
+|[model file] spectre.mod spectre.mod spectre.mod
+[model file] hspice.mod hspice.mod hspice.mod
+
+[model] driver
+[model type] output
+[polarity] non-inverting
+[model file] hspice.mod hspice.mod hspice.mod
+[Rising waveform] 500 0 NA NA NA NA NA NA NA
+[Falling waveform] 500 3.3 NA NA NA NA NA NA NA
+
+[Model] tristate_driver
+[Model type] 3-state
+[Polarity] Non-inverting
+[Enable] active-low
+[vinl]  1.6V
+[Vinh]  1.7V
+[Vmeas] 1.65V
+[Cref]  0.4pF
+[Rref]  1E6
+[Vref]  3.3V
+[Model file] hspice.mod hspice.mod hspice.mod
+[Rising waveform] 500 0 NA NA NA NA NA NA NA
+[Falling waveform] 500 3.3 NA NA NA NA NA NA NA
+
+[model] dummy
+[noModel]
