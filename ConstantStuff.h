@@ -1,6 +1,7 @@
 #ifndef CONSTANTSTUFF_H
 #define CONSTANTSTUFF_H
-#include <bits/stdc++.h>
+#include <string>
+#include <vector>
 using namespace std;
 
 struct goodies {
@@ -20,7 +21,17 @@ struct goodies {
   static bool IS_ECL(int model);
 };
 
-static string KeyNames[]{
+// DJB Hash
+// inline constexpr uint64_t keyNameToInt(const char *str) {
+//  uint64_t hash = 5381;
+//  while (*str) {
+//    hash = ((hash << 5) + hash) + (*str++);
+//  }
+//  hash &= ~(1 << 31);
+//  return hash;
+//}
+
+static const vector<string> KeyNames{
     "ibis ver",
     "file name",
     "file rev",

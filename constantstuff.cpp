@@ -1,4 +1,4 @@
-#include "constantstuff.h"
+#include "ConstantStuff.h"
 
 bool goodies::IS_USE_NA(double number) {
   if (((number) >= ConstantStuff::USE_NA - ConstantStuff::Tolerance) &&

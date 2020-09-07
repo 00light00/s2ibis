@@ -1,7 +1,7 @@
 #ifndef IBISTYPMINMAX_H
 #define IBISTYPMINMAX_H
 
-#include "constantstuff.h"
+#include "ConstantStuff.h"
 
 /******************************************************************************
 CLASS: ibisTypMinMax
